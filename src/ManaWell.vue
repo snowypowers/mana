@@ -13,7 +13,8 @@ export default {
   },
   methods:{
     drawMana: function() {
-      this.$store.commit("CHANGE_MANA", Math.floor(Math.random() * 50))
+      console.log("drawMana")
+      this.$store.commit("changeMana", Math.floor(Math.random() * 50))
     }
   }
 }

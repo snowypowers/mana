@@ -1,16 +1,28 @@
 <template lang="pug">
   div#app
-
-
+    ManaWell
+    p {{ manaCount}}
+    Rune( :hex="this.$store.state.runes.a", runeID="a")
 </template>
 
 <script>
+import ManaWell from './ManaWell.vue'
+import Rune from './Rune.vue'
 export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      rune: "abababababababab"
     }
+  },
+  computed: {
+    manaCount() {
+      return this.$store.state.mana
+    }
+  },
+  components:{
+    ManaWell,
+    Rune
   }
 }
 </script>

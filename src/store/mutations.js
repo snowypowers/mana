@@ -1,7 +1,10 @@
 
 const mutations = {
-  CHANGE_MANA(state, amt) {
+  changeMana(state, amt) {
     state.mana += amt
+  },
+  changeRune(state, change) {
+    state.runes[change.runeID] = change.newRune
   }
 }
 
