@@ -1,5 +1,5 @@
 <template lang="pug">
-#rune
+#rune(draggable=true)
   .pixelrow(v-for="(row, rowI) in coords")
     .pixel(v-for="(item, colI) in row", v-bind:class="coords[rowI][colI]?fill:'' ", @click="togglePixel(rowI,colI)")
 
@@ -31,7 +31,6 @@ export default {
   },
   methods: {
     togglePixel(row, col) {
-      console.log(row, col, this.coords)
       let binArr = this.coords.slice()
       binArr[row][col] = binArr[row][col]? 0:1
       let newRune = binArr.reduce((acc, val)=> {
@@ -39,7 +38,6 @@ export default {
         i = leftpad(i,2)
         return acc + i
       }, "")
-      console.log(newRune)
       this.$store.commit('changeRune', {runeID: this.runeID, newRune})
     }
   }

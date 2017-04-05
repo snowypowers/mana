@@ -14,7 +14,7 @@ export default {
   methods:{
     drawMana: function() {
       console.log("drawMana")
-      this.$store.commit("changeMana", Math.floor(Math.random() * 50))
+      this.$store.commit("changeMana", Math.floor(Math.random() * 5))
     }
   }
 }

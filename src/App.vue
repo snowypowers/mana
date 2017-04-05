@@ -2,17 +2,23 @@
   div#app
     ManaWell
     p {{ manaCount}}
-    Rune( :hex="this.$store.state.runes.a", runeID="a")
+    #runelayer
+      Rune( :hex="this.$store.state.runes.a", runeID="a")
+      Rune( :hex="this.$store.state.runes.b", runeID="b")
+      Rune( :hex="this.$store.state.runes.c", runeID="c")
+      Rune( :hex="this.$store.state.runes.d", runeID="d")
+    Menus
 </template>
 
 <script>
 import ManaWell from './ManaWell.vue'
 import Rune from './Rune.vue'
+import Menus from './Menus.vue'
 export default {
   name: 'app',
   data () {
     return {
-      rune: "abababababababab"
+
     }
   },
   computed: {
@@ -22,7 +28,8 @@ export default {
   },
   components:{
     ManaWell,
-    Rune
+    Rune,
+    Menus
   }
 }
 </script>
@@ -41,6 +48,13 @@ body
   background-color: black
   width: 100%
   height: 100vh
+
+#runelayer
+  width: 100%
+  display: flex
+  flex-flow: row wrap
+  align-items: center
+  justify-content: space-around
 
 #well
   height: 100px
