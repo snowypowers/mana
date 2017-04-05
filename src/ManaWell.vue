@@ -1,7 +1,6 @@
 <template lang="pug">
 svg#well(height="100px" width="100px" alt="The Mana Well")
-  circle(cx="50" cy="50" r="40" stroke="white" stroke-width="5" @click="drawMana")
-
+  circle(cx="50" cy="50" r="40" stroke-width="5" @click="drawMana")
 </template>
 
 <script>
@@ -13,7 +12,6 @@ export default {
   },
   methods:{
     drawMana: function() {
-      console.log("drawMana")
       this.$store.commit("changeMana", Math.floor(Math.random() * 5))
     }
   }
