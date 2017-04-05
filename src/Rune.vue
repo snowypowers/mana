@@ -1,8 +1,9 @@
 <template lang="pug">
-#rune(draggable=true)
-  .pixelrow(v-for="(row, rowI) in coords")
-    .pixel(v-for="(item, colI) in row", v-bind:class="coords[rowI][colI]?fill:'' ", @click="togglePixel(rowI,colI)")
-
+.rune-container
+  .rune(draggable=true)
+    .pixelrow(v-for="(row, rowI) in coords")
+      .pixel(v-for="(item, colI) in row", v-bind:class="coords[rowI][colI]?fill:'' ", @click="togglePixel(rowI,colI)")
+  slot
 </template>
 
 <script>
@@ -31,6 +32,7 @@ export default {
   },
   methods: {
     togglePixel(row, col) {
+      if (!this.runeID) return
       let binArr = this.coords.slice()
       binArr[row][col] = binArr[row][col]? 0:1
       let newRune = binArr.reduce((acc, val)=> {
@@ -45,10 +47,13 @@ export default {
 </script>
 
 <style lang="stylus">
-#rune
+.rune-container
+  margin: 0 5px
+.rune
   width: 128px
   height: 128px
-  border: 1px solid white
+  border: 1px solid currentColor
+  margin: auto
 
 .pixelrow
   width: 100%
@@ -58,9 +63,8 @@ export default {
   display: inline-block
   width:16px
   height:16px
-
   cursor: pointer
 
 .fill
-  background-color: white
+  background-color: currentColor
 </style>
