@@ -1,17 +1,19 @@
 <template lang="pug">
-div This is Research
-  Rune( :hex="runeHash", :)
-    RuneInfo
+.menu#research
+  Rune( :hex="runeHash", type='research')
+    p Potential
+  .rune-button( @click="carve")
+    Rune( :hex="'003c460a12224400'")
+      .info
+        p Carve!
 </template>
 
 <script>
 import Rune from '../Rune.vue'
-import RuneInfo from '../RuneInfo.vue'
 export default {
   name: 'Research',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
     }
   },
   computed: {
@@ -19,9 +21,13 @@ export default {
       return this.$store.state.research.rune
     }
   },
+  methods: {
+    carve() {
+      this.$store.dispatch('attemptResearch')
+    }
+  },
   components: {
-    Rune, 
-    RuneInfo
+    Rune
   }
 }
 </script>

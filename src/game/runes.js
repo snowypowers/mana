@@ -31,8 +31,20 @@ export const standard = {
     name: 'Plus',
     desc: '1 plus 1 is 3.',
     func: (val) => {
-
-    }
+      return val
+    },
+    priority: 0,
+    cost: 1
+  },
+  '0000241818240000': {
+    name: 'Mine',
+    desc: 'Boom!',
+    func: (val) => {
+      let chance = Math.random() > 0.5
+      return chance ? val * 2 : 0
+    },
+    priority: 1,
+    cost: 1
   }
 }
 

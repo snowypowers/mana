@@ -59,6 +59,7 @@ export default {
     border-radius: 5px
     padding: 5px 5px
     margin: 0 5px
+    cursor: pointer
 
 .active
   border: 3px solid currentColor
@@ -66,4 +67,8 @@ export default {
 #tab-content
   width: 100%
   height: auto
+
+.rune-button
+  flex: 0 0 auto
+  
 </style>

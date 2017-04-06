@@ -1,46 +1,33 @@
 <template lang="pug">
 .rune-container
   .rune(draggable=true)
-    .pixelrow(v-for="(row, rowI) in coords")
-      .pixel(v-for="(item, colI) in row", v-bind:class="coords[rowI][colI]?fill:'' ", @click="togglePixel(rowI,colI)")
+    .pixelrow(v-for="(row, rowI) in coords", :key="rowI")
+      .pixel(v-for="(item, colI) in row", :key='colI', v-bind:class="[coords[rowI][colI]?'fill':'', !clickable&&disabled?'disabled':'']", @click="togglePixel(rowI,colI)")
   slot
 </template>
 
 <script>
-function leftpad (s, p) {
-  return Array(p-s.length+1).join('0') + s
-}
+import { runeBin2Hex, runeHex2Bin } from './game/utils.js'
 
 export default {
   name: 'Rune',
-  props: ["hex", "runeID"],
+  props: ["hex", "runeID", 'type', 'disabled', 'clickable'],
   data() {
     return {
-      fill: 'fill'
     }
   },
   computed: {
     coords() {
-      let chunks = this.hex.match(/.{1,2}/g)
-      let binaryStrings = chunks.map((chunk)=> {
-        let i = parseInt(chunk,16).toString(2)
-        return leftpad(i,8)
-      })
-      let binaryChunks = binaryStrings.map((s)=> {return s.match(/.{1}/g).map((x)=>parseInt(x))})
-      return binaryChunks
+      return runeHex2Bin(this.hex)
     }
   },
   methods: {
     togglePixel(row, col) {
-      if (!this.runeID) return
+      if (this.disabled) return
       let binArr = this.coords.slice()
       binArr[row][col] = binArr[row][col]? 0:1
-      let newRune = binArr.reduce((acc, val)=> {
-        let i = parseInt(val.join(''),2).toString(16)
-        i = leftpad(i,2)
-        return acc + i
-      }, "")
-      this.$store.commit('CHANGE_RUNE', {runeID: this.runeID, newRune})
+      let newRune = runeBin2Hex(binArr)
+      this.$store.commit('CHANGE_RUNE', {type: this.type, runeID: this.runeID, newRune})
     }
   }
 }
@@ -49,7 +36,6 @@ export default {
 <style lang="stylus">
 .rune-container
   margin: 0 5px
-
 
 .pixelrow
   width: 100%
@@ -60,6 +46,8 @@ export default {
   width:16px
   height:16px
   cursor: pointer
+  &.disabled
+    cursor: default
 
 .fill
   background-color: currentColor

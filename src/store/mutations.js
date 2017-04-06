@@ -5,8 +5,17 @@ const mutations = {
     state.mana += amt
   },
   CHANGE_RUNE (state, change) {
-    let [layer, id] = change.runeID.split('.')
-    state.runes[layer].runes[id] = change.newRune
+    switch (change.type) {
+      case 'runes':
+        let [layer, id] = change.runeID.split('.')
+        state.runes[layer].runes[id] = change.newRune
+        break
+      case 'research':
+        state.research.rune = change.newRune
+        break
+      default:
+        console.log('Untyped rune change!')
+    }
   },
   LOAD_FILE (state, file) {
     state = Object.assign(state, file)
@@ -16,6 +25,9 @@ const mutations = {
   },
   UNTOAST (state, hash) {
     Vue.delete(state.toasts, hash)
+  },
+  RESEARCH_RUNE (state, rune) {
+    state.library[rune] = true
   }
 }
 

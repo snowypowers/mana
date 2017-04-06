@@ -1,7 +1,7 @@
 <template lang="pug">
-#library
-  .library-rune(v-for="(val, key, index) in lib")
-    Rune( :hex="val?key:'0018240418001800'")
+.menu#library
+  .rune-button(v-for="(val, key, index) in lib", :key="index")
+    Rune( :hex="val?key:'0018240418001800'", disabled='true')
       RuneInfo(:hex="val?key:'undiscovered'")
 
 </template>
@@ -21,6 +21,12 @@ export default {
       return this.$store.state.library
     }
   },
+  methods: {
+    blockClick() {
+      console.log("blocked!")
+      return null
+    }
+  },
   components: {
     Rune,
     RuneInfo
@@ -29,10 +35,5 @@ export default {
 </script>
 
 <style lang="stylus">
-#library
-  overflow-x:scroll
-  display: flex
-  flex-flow: row nowrap
-
 
 </style>

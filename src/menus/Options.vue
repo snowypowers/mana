@@ -1,11 +1,11 @@
 <template lang="pug">
-#options
+.menu#options
   .rune-button( @click="saveFile")
-    Rune( :hex="'001818185a3c1800'")
+    Rune( :hex="'001818185a3c1800'", disabled=true, clickable=true)
       .info
         p Save
   .rune-button( @click="loadFile")
-    Rune( :hex="'00183c5a18181800'")
+    Rune( :hex="'00183c5a18181800'", disabled=true, clickable=true)
       .info
         p Load
 
@@ -38,8 +38,6 @@ export default {
 </script>
 
 <style lang="stylus">
-#options
-  overflow-x:scroll
-  display: flex
-  flex-flow: row nowrap
+
+
 </style>

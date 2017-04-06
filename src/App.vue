@@ -4,7 +4,7 @@
     Toast(ref="toast")
     ManaWell
     p {{ manaCount}}
-    RuneLayer( v-for="(layer, key, index) in runes", :layerID="key", :data="layer")
+    RuneLayer( v-for="(layer, key, index) in runes", :key="index", :layerID="key", :data="layer")
     Menus
 </template>
 
@@ -78,6 +78,11 @@ svg, .svg
   @media(min-width: 1000px)
     width: 1000px
     margin: 50px auto
+
+.menu
+  overflow-x:scroll
+  display: flex
+  flex-flow: row nowrap
 
 .rune
   width: 128px

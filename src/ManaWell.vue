@@ -8,11 +8,23 @@ export default {
   name: 'ManaWell',
   data () {
     return {
+      compiled: (val) => {
+        return val
+      }
+    }
+  },
+  computed: {
+    manaMod() {
+      return this.$store.getters.manaMods
     }
   },
   methods:{
     drawMana: function() {
-      this.$store.commit("CHANGE_MANA", Math.floor(Math.random() * 5))
+      let amt = Math.floor(Math.random() * 4) + 1
+      for (let i=0;i<this.manaMod.length;i++) {
+          amt = this.manaMod[i](amt)
+      } 
+      this.$store.commit("CHANGE_MANA", amt)
     }
   }
 }

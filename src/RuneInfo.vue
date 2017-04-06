@@ -19,7 +19,7 @@ export default {
     info() {
       if (special[this.hex]) return special[this.hex]
       let named = standard[this.hex]
-      if (named) return named
+      if (named && this.$store.state.library[this.hex]) return named
       return {
         name:'Unnamed',
         desc:'Nothing',
