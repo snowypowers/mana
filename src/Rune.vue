@@ -40,7 +40,7 @@ export default {
         i = leftpad(i,2)
         return acc + i
       }, "")
-      this.$store.commit('changeRune', {runeID: this.runeID, newRune})
+      this.$store.commit('CHANGE_RUNE', {runeID: this.runeID, newRune})
     }
   }
 }
@@ -49,11 +49,7 @@ export default {
 <style lang="stylus">
 .rune-container
   margin: 0 5px
-.rune
-  width: 128px
-  height: 128px
-  border: 1px solid currentColor
-  margin: auto
+
 
 .pixelrow
   width: 100%

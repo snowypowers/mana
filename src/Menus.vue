@@ -16,7 +16,7 @@ import Options from './menus/Options.vue'
 import Research from './menus/Research.vue'
 
 export default {
-  name: 'Menu',
+  name: 'Menus',
   data () {
     return {
       lib: true,
@@ -61,7 +61,7 @@ export default {
     margin: 0 5px
 
 .active
-  border: 1px solid currentColor
+  border: 3px solid currentColor
 
 #tab-content
   width: 100%

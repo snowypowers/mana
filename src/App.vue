@@ -1,6 +1,7 @@
 <template lang="pug">
-#app
+#app( @toast="handleToast")
   .container
+    Toast(ref="toast")
     ManaWell
     p {{ manaCount}}
     #runelayer
@@ -20,6 +21,7 @@ import ManaWell from './ManaWell.vue'
 import Rune from './Rune.vue'
 import RuneInfo from './RuneInfo.vue'
 import Menus from './Menus.vue'
+import Toast from './Toast.vue'
 
 export default {
   name: 'app',
@@ -33,11 +35,18 @@ export default {
       return this.$store.state.mana
     }
   },
+  methods: {
+    handleToast(msg) {
+      console.log("Catch toast")
+      this.$refs.toast.toast(msg)
+    }
+  },
   components:{
     ManaWell,
     Rune,
     RuneInfo,
-    Menus
+    Menus,
+    Toast
   }
 }
 </script>
@@ -46,14 +55,15 @@ export default {
 body
   margin: 0
   padding: 0
-  color: white
-  background-color: black
+  color: #666
+  background-color: #212121
   overflow: scroll
   overflow-x: hidden
 
-svg
+svg, .svg
   stroke: currentColor
   fill: transparent
+
 
 ::webkit-scrollbar
   width: 0px
@@ -82,6 +92,12 @@ svg
   flex-flow: row nowrap
   align-items: center
   justify-content: space-around
+
+.rune
+  width: 128px
+  height: 128px
+  border: 3px solid currentColor
+  margin: auto
 
 #well
   height: 100px

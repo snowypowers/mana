@@ -14,7 +14,7 @@ const store = new Vuex.Store({
   mutations
 })
 
-new Vue({
+new Vue({  // eslint-disable-line no-new
   el: '#app',
   store,
   render: h => h(App)

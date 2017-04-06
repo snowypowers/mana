@@ -12,7 +12,7 @@ export default {
   },
   methods:{
     drawMana: function() {
-      this.$store.commit("changeMana", Math.floor(Math.random() * 5))
+      this.$store.commit("CHANGE_MANA", Math.floor(Math.random() * 5))
     }
   }
 }
