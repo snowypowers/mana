@@ -19,7 +19,6 @@ export default {
   name: 'Options',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
     }
   },
   components: {
@@ -31,7 +30,8 @@ export default {
       this.$store.dispatch('toast', 'Saved!')
     },
     loadFile() {
-      this.$store.commit('loadFile', loadFromLocal())
+      this.$store.commit('LOAD_FILE', loadFromLocal())
+      this.$store.dispatch('toast', 'Loaded!')
     }
   }
 }

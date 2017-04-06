@@ -4,22 +4,13 @@
     Toast(ref="toast")
     ManaWell
     p {{ manaCount}}
-    #runelayer
-      Rune( :hex="this.$store.state.runes.a", runeID="a" style="flex: 0 1 25%")
-        RuneInfo( :hex='this.$store.state.runes.a')
-      Rune( :hex="this.$store.state.runes.b", runeID="b" style="flex: 0 1 25%")
-        RuneInfo( :hex='this.$store.state.runes.b')
-      Rune( :hex="this.$store.state.runes.c", runeID="c" style="flex: 0 1 25%")
-        RuneInfo( :hex='this.$store.state.runes.c')
-      Rune( :hex="this.$store.state.runes.d", runeID="d" style="flex: 0 1 25%")
-        RuneInfo( :hex='this.$store.state.runes.d')
+    RuneLayer( v-for="(layer, key, index) in runes", :layerID="key", :data="layer")
     Menus
 </template>
 
 <script>
 import ManaWell from './ManaWell.vue'
-import Rune from './Rune.vue'
-import RuneInfo from './RuneInfo.vue'
+import RuneLayer from './RuneLayer.vue'
 import Menus from './Menus.vue'
 import Toast from './Toast.vue'
 
@@ -33,6 +24,9 @@ export default {
   computed: {
     manaCount() {
       return this.$store.state.mana
+    },
+    runes() {
+      return this.$store.state.runes
     }
   },
   methods: {
@@ -43,8 +37,7 @@ export default {
   },
   components:{
     ManaWell,
-    Rune,
-    RuneInfo,
+    RuneLayer,
     Menus,
     Toast
   }
@@ -85,13 +78,6 @@ svg, .svg
   @media(min-width: 1000px)
     width: 1000px
     margin: 50px auto
-
-#runelayer
-  width: 100%
-  display: flex
-  flex-flow: row nowrap
-  align-items: center
-  justify-content: space-around
 
 .rune
   width: 128px
