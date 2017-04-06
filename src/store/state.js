@@ -1,8 +1,9 @@
 
-import runes from '../game/runes.js'
+import {standard} from '../game/runes.js'
 
 var library = {}
-for (var k in runes) library[k] = false
+for (var k in standard) library[k] = false
+
 const state = {
   mana: 0,
   runes: {
@@ -11,10 +12,12 @@ const state = {
       runes: {
         a: '0000000000000000'
       }
-
     }
   },
   library,
+  research: {
+    rune: '0000000000000000'
+  },
   toasts: {}
 }
 

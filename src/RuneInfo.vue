@@ -6,19 +6,19 @@
 </template>
 
 <script>
-import runes from './game/runes.js'
+import {special, standard} from './game/runes.js'
 
 export default {
   name: 'RuneInfo',
-  props: ['hex', 'special'],
+  props: ['hex'],
   data () {
     return {
     }
   },
   computed: {
     info() {
-      if (this.special) return runes[this.special]
-      let named = runes[this.hex]
+      if (special[this.hex]) return special[this.hex]
+      let named = standard[this.hex]
       if (named) return named
       return {
         name:'Unnamed',

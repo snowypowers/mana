@@ -8,7 +8,7 @@
   cost    : Cost of using the rune
 }
 */
-const library = {
+export const standard = {
   '0000001818000000': {
     name: 'Do',
     desc: 'The simplest rune you can find and make.',
@@ -33,7 +33,10 @@ const library = {
     func: (val) => {
 
     }
-  },
+  }
+}
+
+export const special = {
   'undiscovered': {
     name: '?',
     desc: 'Undiscovered',
@@ -41,4 +44,5 @@ const library = {
   }
 }
 
-export default library
+const all = Object.assign({}, standard, special)
+export default all
