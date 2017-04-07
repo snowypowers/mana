@@ -36,3 +36,10 @@ export function runeHex2Bin (hex) {
   let binaryChunks = binaryStrings.map((s) => { return s.match(/.{1}/g).map((x) => parseInt(x)) })
   return binaryChunks
 }
+// Flatten an obj of arrays into a single array
+export function flattenObject (obj) {
+  let keys = Object.keys(obj)
+  return keys.reduce((acc, val) => {
+    return acc.concat(obj[val])
+  }, [])
+}

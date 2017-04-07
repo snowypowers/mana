@@ -1,17 +1,20 @@
 <template lang="pug">
 div#menu
   #tabs
-    span( :class="{'active': lib}", @click="setLib") Library
-    span( :class="{'active': res}", @click="setRes") Research
-    span( :class="{'active': opt}", @click="setOpt") Options
+    span( :class="{'active': tabs.lib}", @click="set('lib')") Library
+    span( :class="{'active': tabs.upg}", @click="set('upg')") Upgrades
+    span( :class="{'active': tabs.res}", @click="set('res')") Research
+    span( :class="{'active': tabs.opt}", @click="set('opt')") Options
   #tab-content
-    Library( v-if="lib")
-    Research( v-if="res")
-    Options( v-if="opt")
+    Library( v-if="tabs.lib")
+    Upgrades( v-if="tabs.upg")
+    Research( v-if="tabs.res")
+    Options( v-if="tabs.opt")
 </template>
 
 <script>
 import Library from './menus/Library.vue'
+import Upgrades from './menus/Upgrades.vue'
 import Options from './menus/Options.vue'
 import Research from './menus/Research.vue'
 
@@ -19,30 +22,26 @@ export default {
   name: 'Menus',
   data () {
     return {
-      lib: true,
-      res: false,
-      opt: false
+      tabs :{
+        lib: true,
+        upg: false,
+        res: false,
+        opt: false
+      }
+
     }
   },
   methods: {
-    setLib() {
-      this.lib = true
-      this.res = false
-      this.opt = false
-    },
-    setRes() {
-      this.lib = false
-      this.res = true
-      this.opt = false
-    },
-    setOpt() {
-      this.lib = false
-      this.res = false
-      this.opt = true
+    set(tab) {
+      let keys = Object.keys(this.tabs)
+      for (let i=0;i<keys.length;i++) {
+        if (keys[i] == tab) this.tabs[keys[i]] = true
+        else this.tabs[keys[i]] = false
+      }
     }
   },
   components: {
-    Library, Research, Options
+    Library, Upgrades, Research, Options
   }
 }
 </script>
@@ -70,5 +69,5 @@ export default {
 
 .rune-button
   flex: 0 0 auto
-  
+
 </style>

@@ -1,4 +1,5 @@
 import { standard } from '../game/runes.js'
+import upgrades from '../game/upgrades.js'
 
 const getters = {
   manaMods: state => {
@@ -7,6 +8,9 @@ const getters = {
     runes = runes.map((r) => standard[r])
     runes.sort((a, b) => a.priority - b.priority)
     return runes.map((r) => r.func)
+  },
+  manawellUpgrades: state => {
+    return state.upgrades.filter((u) => u in upgrades.manawell)
   }
 }
 

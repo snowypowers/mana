@@ -30,6 +30,29 @@ const actions = {
         dispatch('toast', 'New rune discovered!')
       }
     }
+  },
+  buyUpgrade: ({dispatch, state, commit}, upgrade) => {
+    if (state.mana > upgrade.cost) {
+      commit('CHANGE_MANA', -upgrade.cost)
+    } else {
+      dispatch('toast', 'Not enough mana!')
+      return
+    }
+    commit('BUY_UPGRADE', upgrade.id)
+    for (let action in upgrade.actions) {
+      let dispatchID = action.shift()
+      dispatch(dispatchID, ...action)
+    }
+  },
+  addRuneSlot: ({state, commit}, layer) => {
+    let chars = 'abcdefgh'
+    let currentSlots = Object.keys(state.runes[layer].runes).length
+    let payload = {layer, id: chars[currentSlots]}
+    commit('ADD_RUNE_SLOT', payload)
+  },
+  addRuneLayer: ({state, commit}) => {
+    let layerCount = Object.keys(state.runes).length + 1
+    commit('ADD_RUNE_LAYER', layerCount)
   }
 }
 

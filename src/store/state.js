@@ -18,6 +18,7 @@ const state = {
   research: {
     rune: '0000000000000000'
   },
+  upgrades: [],
   toasts: {}
 }
 

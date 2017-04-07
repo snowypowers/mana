@@ -28,6 +28,20 @@ const mutations = {
   },
   RESEARCH_RUNE (state, rune) {
     state.library[rune] = true
+  },
+  ADD_RUNE_SLOT (state, payload) {
+    Vue.set(state.runes[payload.layer].runes, payload.id, '0000000000000000')
+  },
+  ADD_RUNE_LAYER (state, id) {
+    Vue.set(state.runes, id, {
+      imbued: false,
+      runes: {
+        a: '0000000000000000'
+      }
+    })
+  },
+  BUY_UPGRADE (state, id) {
+    state.upgrades.push(id)
   }
 }
 
