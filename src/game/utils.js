@@ -43,3 +43,20 @@ export function flattenObject (obj) {
     return acc.concat(obj[val])
   }, [])
 }
+
+// Returns the current MoonTide power
+// Tide is split into 6 phases over 24 hours.
+// Strongest phase moves with the day
+// Production bonus => 1.5, 1.2, 0.8, 0.5
+export function moonTide () {
+  let d = new Date()
+  let dateNow = d.getDate()
+  if (dateNow > 23) dateNow -= 23
+  let hourNow = d.getHours()
+  let dist = Math.abs(hourNow - dateNow)
+  if (dist > 12) dist = 23 - dist
+  if (dist <= 1) return 1.5
+  if (dist <= 5) return 1.2
+  if (dist <= 9) return 0.8
+  return 0.5
+}

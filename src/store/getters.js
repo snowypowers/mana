@@ -10,7 +10,8 @@ const getters = {
     return runes.map((r) => r.func)
   },
   manawellUpgrades: state => {
-    return state.upgrades.filter((u) => u in upgrades.manawell)
+    let upgradeList = state.upgrades.filter((u) => u in upgrades.manawell)
+    return upgradeList.map((u) => u.func)
   }
 }
 

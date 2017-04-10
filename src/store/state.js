@@ -5,6 +5,10 @@ var library = {}
 for (var k in standard) library[k] = false
 
 const state = {
+  time: {
+    lastUpdate: new Date().getTime(),
+    leftover: 0
+  },
   mana: 0,
   runes: {
     1: {

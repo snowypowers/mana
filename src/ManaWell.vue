@@ -1,10 +1,10 @@
 <template lang="pug">
 svg#well(height="100px" width="100px" alt="The Mana Well" title='The Mana Well')
-  circle(cx="50" cy="50" r="40" stroke-width="5" @click="drawMana")
+  circle(cx="50" cy="50" r="40" stroke-width="5" @click.prevent="drawMana")
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import {manawell} from './game/upgrades.js'
 
 export default {
   name: 'ManaWell',
@@ -29,9 +29,12 @@ export default {
   methods:{
     drawMana: function() {
       let amt = this.base()
+      for (let i=0;i<this.upgrades.length;i++) {
+          amt = this.upgrades[i](amt)
+      }
       for (let i=0;i<this.manaMods.length;i++) {
           amt = this.manaMods[i](amt)
-      } 
+      }
       this.$store.commit("CHANGE_MANA", amt)
     }
   }

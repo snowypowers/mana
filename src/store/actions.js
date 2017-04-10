@@ -1,6 +1,26 @@
 import { standard } from '../game/runes.js'
 
 const actions = {
+  updateTime: ({dispatch, state, commit}) => {
+    let now = new Date().getTime()
+    let prev = state.time.lastUpdate
+    commit('UPDATE_TIME', now)
+    let interval = now - prev
+    if (interval > 1000) {
+      while (interval > 1000) {
+        interval -= 1000
+        // DO SOMETHING
+      }
+    }
+    commit('UPDATE_LEFTOVER', interval)
+    dispatch('catchupTime')
+  },
+  catchupTime: ({state, commit}) => {
+    if (state.time.leftover > 1000) {
+      // DO SOMETHING
+      commit('UPDATE_LEFTOVER', -1000)
+    }
+  },
   toast: ({state, commit}, msg) => {
     let hash = Math.random().toString(36).substring(7)
     let timeout = window.setTimeout(() => {
@@ -39,10 +59,12 @@ const actions = {
       return
     }
     commit('BUY_UPGRADE', upgrade.id)
-    for (let action in upgrade.actions) {
+    for (let i = 0; i < upgrade.actions.length; i++) {
+      let action = upgrade.actions[i]
       let dispatchID = action.shift()
       dispatch(dispatchID, ...action)
     }
+    dispatch('toast', 'Upgrade ' + upgrade.name + ' Purchased!')
   },
   addRuneSlot: ({state, commit}, layer) => {
     let chars = 'abcdefgh'

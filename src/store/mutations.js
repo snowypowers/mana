@@ -1,6 +1,12 @@
 import Vue from 'vue'
 
 const mutations = {
+  UPDATE_TIME (state, newTime) {
+    state.time.lastUpdate = newTime
+  },
+  UPDATE_LEFTOVER (state, amt) {
+    state.time.leftover += amt
+  },
   CHANGE_MANA (state, amt) {
     state.mana += amt
   },

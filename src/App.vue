@@ -16,9 +16,9 @@ import Toast from './Toast.vue'
 
 export default {
   name: 'app',
-  data () {
+  data() {
     return {
-
+      updater: null
     }
   },
   computed: {
@@ -35,7 +35,15 @@ export default {
       this.$refs.toast.toast(msg)
     }
   },
-  components:{
+  mounted() {
+    this.updater = setInterval(() => {
+      this.$store.dispatch('updateTime')
+    }, 1000)
+  },
+  beforeDestroy() {
+    clearInterval(this.updater)
+  },
+  components: {
     ManaWell,
     RuneLayer,
     Menus,
@@ -83,6 +91,7 @@ svg, .svg
   overflow-x:scroll
   display: flex
   flex-flow: row nowrap
+  height: 100%
 
 .rune
   width: 128px

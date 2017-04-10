@@ -24,7 +24,7 @@ const upgrades = {
       ]
     },
     {
-      if: 'CompleteCircle',
+      id: 'CompleteCircle',
       name: 'Complete Circle',
       desc: '4th rune slot!',
       hex: '0004400000022000',
@@ -52,9 +52,10 @@ const upgrades = {
       name: 'Ebb and Flow',
       desc: 'Increase ManaWell flow slightly',
       hex: '0014280000142800',
-      cost: 1000,
+      cost: 500,
       depends: [],
-      actions: []
+      actions: [],
+      func: (val) => val + 1
     }
   ]
 }

@@ -2,8 +2,10 @@
 .menu#upgrades
   .rune-button(v-for="(upgrade, index) in availableUpgrades", :key="index", @click="purchase(upgrade)")
     Rune( :hex="upgrade.hex", disabled='true', clickable=true)
-      p {{ upgrade.name }}
-      p {{ upgrade.desc }}
+      .info
+        p {{ upgrade.name }}
+        p {{ upgrade.cost + " mana"}}
+        p {{ upgrade.desc }}
 
 </template>
 
@@ -24,9 +26,9 @@ export default {
       let bought = this.$store.state.upgrades
       let upgradeArr = flattenObject(upgrades)
       return upgradeArr.filter((u) => {
-        if (u.id in bought) return false
+        if (bought.includes(u.id)) return false
         for (let i=0;i<u.depends.length;i++) {
-          if (!(u.depends[i] in bought)) return false
+          if (!bought.includes(u.depends[i])) return false
         }
         return true
       })
