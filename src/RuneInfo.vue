@@ -34,6 +34,6 @@ export default {
 
 <style lang="stylus">
 .info
-  width: inherit
+  width: 128px
   min-height: 50px
 </style>

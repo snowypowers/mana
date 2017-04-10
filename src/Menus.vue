@@ -60,6 +60,9 @@ export default {
     margin: 0 5px
     cursor: pointer
 
+#tab-content
+  height: calc(20vh - 50px)
+
 .active
   border: 3px solid currentColor
 

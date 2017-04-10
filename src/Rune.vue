@@ -1,6 +1,6 @@
 <template lang="pug">
 .rune-container
-  .rune(draggable=true)
+  .rune(draggable=true, @contextmenu.prevent="clearBoard", @dragstart="dragRune", @dragover.prevent="", @drop="dropRune")
     .pixelrow(v-for="(row, rowI) in coords", :key="rowI")
       .pixel(v-for="(item, colI) in row", :key='colI', v-bind:class="[coords[rowI][colI]?'fill':'', !clickable&&disabled?'disabled':'']", @click="togglePixel(rowI,colI)")
   slot
@@ -28,6 +28,24 @@ export default {
       binArr[row][col] = binArr[row][col]? 0:1
       let newRune = runeBin2Hex(binArr)
       this.$store.commit('CHANGE_RUNE', {type: this.type, runeID: this.runeID, newRune})
+    },
+    clearBoard(e) {
+      if (this.disabled) return
+      if (this.hex == '0000000000000000') {
+        this.$store.commit('CHANGE_RUNE', {type: this.type, runeID: this.runeID, newRune: 'FFFFFFFFFFFFFFFF'})
+      } else {
+        this.$store.commit('CHANGE_RUNE', {type: this.type, runeID: this.runeID, newRune: '0000000000000000'})
+      }
+    },
+    dragRune(e) {
+      e.dataTransfer.setData('text/plain', this.hex)
+    },
+    dropRune(e) {
+      if (this.disabled) return
+      let newRune = e.dataTransfer.getData('text/plain')
+      if (newRune) {
+        this.$store.commit('CHANGE_RUNE', {type: this.type, runeID: this.runeID, newRune})
+      }
     }
   }
 }
