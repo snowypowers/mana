@@ -1,7 +1,7 @@
 <template lang="pug">
 .runelayer
   Rune( v-for="(rune, key, index) in data.runes", :key="index", :runeID="layerID + '.' + key", :hex="rune", type="runes")
-    RuneInfo( :hex="rune")
+    RuneInfo( :hex="rune", :showDesc='false')
 </template>
 
 <script>

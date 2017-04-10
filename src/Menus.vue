@@ -1,14 +1,16 @@
 <template lang="pug">
-div#menu
+div#menus
   #tabs
     span( :class="{'active': tabs.lib}", @click="set('lib')") Library
     span( :class="{'active': tabs.upg}", @click="set('upg')") Upgrades
     span( :class="{'active': tabs.res}", @click="set('res')") Research
+    span( :class="{'active': tabs.hel}", @click="set('hel')") Help
     span( :class="{'active': tabs.opt}", @click="set('opt')") Options
   #tab-content
     Library( v-if="tabs.lib")
     Upgrades( v-if="tabs.upg")
     Research( v-if="tabs.res")
+    Help( v-if="tabs.hel")
     Options( v-if="tabs.opt")
 </template>
 
@@ -17,6 +19,7 @@ import Library from './menus/Library.vue'
 import Upgrades from './menus/Upgrades.vue'
 import Options from './menus/Options.vue'
 import Research from './menus/Research.vue'
+import Help from './menus/Help.vue'
 
 export default {
   name: 'Menus',
@@ -26,6 +29,7 @@ export default {
         lib: true,
         upg: false,
         res: false,
+        hel: false,
         opt: false
       }
 
@@ -41,15 +45,15 @@ export default {
     }
   },
   components: {
-    Library, Upgrades, Research, Options
+    Library, Upgrades, Research, Help, Options
   }
 }
 </script>
 
 <style lang="stylus">
-#menu
+#menus
   width: 100%
-  height: 20vh
+  height: 250px
 
 #tabs
   width: 100%
@@ -60,15 +64,12 @@ export default {
     margin: 0 5px
     cursor: pointer
 
-#tab-content
-  height: calc(20vh - 50px)
-
 .active
   border: 3px solid currentColor
 
 #tab-content
   width: 100%
-  height: auto
+  height: 100%
 
 .rune-button
   flex: 0 0 auto

@@ -1,7 +1,7 @@
 <template lang="pug">
 .info
-  p {{ info.name }}
-  p {{ info.desc }}
+  p( v-if="showName") {{ info.name }}
+  p( v-if="showDesc") {{ info.desc }}
 
 </template>
 
@@ -10,7 +10,20 @@ import {special, standard} from './game/runes.js'
 
 export default {
   name: 'RuneInfo',
-  props: ['hex'],
+  props: {
+    hex: {
+      type: String,
+      default: '0000000000000000'
+    },
+    showName: {
+      type: Boolean,
+      default: true
+    },
+    showDesc: {
+      type: Boolean,
+      default: true
+    }
+  },
   data () {
     return {
     }
@@ -35,5 +48,4 @@ export default {
 <style lang="stylus">
 .info
   width: 128px
-  min-height: 50px
 </style>
