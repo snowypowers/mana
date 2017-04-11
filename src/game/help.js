@@ -7,7 +7,8 @@ const help = [
     title: 'Library',
     body: [
       'The library tab showcases the runes in the game. It tracks all discovered runes that the player can use and also the unknown runes. Players can click on each rune to read more about it. ',
-      'Drag and drop the rune into a rune slot to populate the rune slot with the respective rune instantly.'
+      'Drag and drop the rune into a rune slot to populate the rune slot with the respective rune instantly.',
+      'Right click on any discovered rune to read about it.'
     ]
   },
   {
@@ -23,7 +24,10 @@ const help = [
     name: 'Mana Well',
     hex: '0042665a5a424200',
     title: 'The Source of All Power',
-    body: 'The mana well.'
+    body: [
+      'The circle at the top represents the Mana Well, our source of power. It is the only source of mana in this game. Draw mana by clicking on it. Every click will draw a small sample of mana.',
+      'The runes below it serves as slots to manipulate the ebb and flow of mana. Use them to manipulate and amplify your mana flow per click. However, you will need to discover the runes before using them. Using proper but unnamed runes will not affect the flow at all.'
+    ]
   }
 ]
 
