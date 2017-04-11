@@ -21,7 +21,7 @@ export default {
       show: false,
       msg: {
         title: 'Hi!',
-        body: ' BODY ',
+        body: [' BODY '],
         
       }
     }

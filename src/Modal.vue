@@ -3,13 +3,13 @@ transition(name='modal', v-if="show")
   div.modal-mask( @click="close")
     div.modal-wrapper
       div.modal-container( @click.stop="")
-        div.modal-header 
+        div.modal-header
           slot(name='header')
         div.modal-body
           slot(name='body')
         div.modal-footer
           button.modal-default-button( @click="close") OK
-        
+
 </template>
 
 <script>
@@ -30,7 +30,7 @@ export default {
 </script>
 
 <style lang="stylus">
-.modal-mask 
+.modal-mask
   position: fixed;
   z-index: 9998;
   top: 0;
@@ -41,12 +41,12 @@ export default {
   transition: opacity .3s ease;
 
 
-.modal-wrapper 
+.modal-wrapper
   display: table-cell;
   vertical-align: middle;
 
 
-.modal-container 
+.modal-container
   width: 500px
   margin: 0px auto
   padding: 20px 30px
@@ -61,7 +61,7 @@ export default {
   margin-top: 0
   color: currentColor
 
-.modal-body 
+.modal-body
   margin: 20px 0
   text-align: left
   word-wrap: break-word
@@ -80,16 +80,16 @@ export default {
   float: right
 
 
-.modal-enter 
+.modal-enter
   opacity: 0
 
 
-.modal-leave-active 
+.modal-leave-active
   opacity: 0
 
 
 .modal-enter .modal-container,
-.modal-leave-active .modal-container 
+.modal-leave-active .modal-container
   -webkit-transform: scale(1.1)
   transform: scale(1.1)
 

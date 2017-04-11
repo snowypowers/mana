@@ -7,7 +7,8 @@ const help = [
     title: 'Library',
     body: [
       'The library tab showcases the runes in the game. It tracks all discovered runes that the player can use and also the unknown runes. Players can click on each rune to read more about it. ',
-      'Drag and drop the rune into a rune slot to populate the rune slot with the respective rune instantly.'
+      'Drag and drop the rune into a rune slot to populate the rune slot with the respective rune instantly.',
+      'Right click on any discovered rune to read about it.'
     ]
   },
   {
